@@ -1,16 +1,14 @@
 import json
 
-def converter(valor, moeda_origem, moeda_destino):
+def carregar_valores():
+    with open("dados/valoresconversao.json", "r", encoding="utf-8") as arquivo:
+        return json.load(arquivo)
 
-    open (valores)
-    valores = json.load(arquivo)
-    
+def calculando(valor, moeda_origem, moeda_destino):
+    valores = carregar_valores()
+
     taxa_origem = valores[moeda_origem]
     taxa_destino = valores[moeda_destino]
 
-    convertendo = valor * taxa_origem / taxa_destino
-
-    return(convertendo)
-
-print(converter(100, "real", "dolar_americano"))
-print(json)
+    resultado = valor * taxa_origem / taxa_destino
+    return resultado

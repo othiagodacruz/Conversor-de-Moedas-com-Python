@@ -1,4 +1,5 @@
 import customtkinter as ctk
+from sistema import calculando
 
 # Definir o tema do CustomTkinter
 
@@ -39,12 +40,12 @@ valor_convertido.configure(state="readonly")
 
 # DEF que calcula/converte as moedas antes de criar o Botao que usa a DEF
 
-def calculando():
-    print("Calculando!")
+def puxando():
+    print(calculando)
 
 # Criando o Botao de Converter
 
-botao_converter = ctk.CTkButton(app, text="Converter", command=calculando)
+botao_converter = ctk.CTkButton(app, text="Converter", command=puxando)
 
 # Colocar os Elementos Criados Acima na Janela do APP usando GRID
 
