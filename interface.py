@@ -1,34 +1,68 @@
 import customtkinter as ctk
-import sistema
+
+# Definir o tema do CustomTkinter
 
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
+# Criar a Janela do APP, Definir o Tamanho e o Titulo da Janela 
+
 app = ctk.CTk()
-app.geometry("300x600")
+app.geometry("500x350")
 app.title("Conversor de Moedas com Phyton")
 
-moedas = sistema.carregar_moedas()
+# Definindo a Centralização da Janela
 
-moedadecima = ctk.StringVar(app, value="Moeda: ")
-moedadebaixo = ctk.StringVar(app, value="Moeda: ")
+app.grid_columnconfigure(0, weight=1)
 
-seletordecima = ctk.CTkOptionMenu(app, values=moedas, variable=moedadecima)
-valordecima = ctk.CTkEntry(app, placeholder_text="Valor a ser Convertido: ")
+# Criando Campos e Centralizando eles dentro da Janela do APP para Organizar LADO A LADO
 
-def convertendo():  
+juncao_acima = ctk.CTkFrame(app, fg_color="transparent")
+juncao_abaixo = ctk.CTkFrame(app, fg_color="transparent")
 
-    valor = valordecima.get()
-    origem = moedadecima.get()
-    destino = moedadebaixo.get()
+juncao_acima.grid_columnconfigure((0,1), weight=1)
+juncao_abaixo.grid_columnconfigure((0,1), weight=1)
 
-    resultado = sistema.converter(valor, origem, destino)
-    return(resultado)
+# Criar Escritas, as Caixas de Texto e Outros Elementos
 
-seletordebaixo = ctk.CTkOptionMenu(app, values=moedas, variable=moedadebaixo)
-valorebaixo = ctk.CTkEntry(app, placeholder_text="Valor Convertido: ")
+tituloapp = ctk.CTkLabel(app, text="Conversor de Moedas", font=("", 36))
+subtituloapp = ctk.CTkLabel(app, text="com Python e Custom Tkinter", font=("", 18))
+seletor_moeda_origem = ctk.CTkOptionMenu(juncao_acima, values=["BRL - Real","USD - Dolar","EUR - Euro"], width=200)
+seletor_moeda_destino = ctk.CTkOptionMenu(juncao_abaixo, values=["BRL - Real","USD - Dolar","EUR - Euro"], width=200)
+valor_converter = ctk.CTkEntry(juncao_acima, placeholder_text=" Valor a Converter", fg_color="#2b2b2b", border_width=2, width=200, text_color="white")
+valor_convertido = ctk.CTkEntry(juncao_abaixo, placeholder_text=" Valor Convertido", fg_color="#2b2b2b", border_width=2, width=200, text_color="gray")
 
-button = ctk.CTkButton(app, text="Converter", command=convertendo)
-button.pack(pady=5)
+# Desabilitando a opção de Alteração da Caixa de Resultado da Conversão do Valor
+
+valor_convertido.insert(0, "Valor Convertido")
+valor_convertido.configure(state="readonly")
+
+# DEF que calcula/converte as moedas antes de criar o Botao que usa a DEF
+
+def calculando():
+    print("Calculando!")
+
+# Criando o Botao de Converter
+
+botao_converter = ctk.CTkButton(app, text="Converter", command=calculando)
+
+# Colocar os Elementos Criados Acima na Janela do APP usando GRID
+
+tituloapp.grid(row=0, column=0, padx=0, pady=(20,5))
+subtituloapp.grid(row=1, column=0, padx=0, pady=(0,20))
+
+juncao_acima.grid(row=2, column=0, sticky="ew", padx=0, pady=20)
+
+seletor_moeda_origem.grid(row=0, column=0, padx=10, pady=5)
+valor_converter.grid(row=0, column=1, padx=10, pady=5)
+
+juncao_abaixo.grid(row=3, column=0, sticky="ew", padx=0, pady=20)
+
+seletor_moeda_destino.grid(row=0, column=0, padx=10, pady=5)
+valor_convertido.grid(row=0, column=1, padx=10, pady=5)
+
+botao_converter.grid(row=4, column=0, padx=0, pady=(25,5))
+
+# Manter a Janela do APP Aberta
 
 app.mainloop()
