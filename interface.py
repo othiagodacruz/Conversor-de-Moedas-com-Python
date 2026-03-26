@@ -8,7 +8,7 @@ ctk.set_default_color_theme("dark-blue")
 # Criar a Janela do APP, Definir o Tamanho e o Titulo da Janela 
 
 app = ctk.CTk()
-app.geometry("500x350")
+app.geometry("500x360")
 app.title("Conversor de Moedas com Phyton")
 
 # Definindo a Centralização da Janela
@@ -49,7 +49,7 @@ botao_converter = ctk.CTkButton(app, text="Converter", command=calculando)
 # Colocar os Elementos Criados Acima na Janela do APP usando GRID
 
 tituloapp.grid(row=0, column=0, padx=0, pady=(20,5))
-subtituloapp.grid(row=1, column=0, padx=0, pady=(0,20))
+subtituloapp.grid(row=1, column=0, padx=0, pady=(0,15))
 
 juncao_acima.grid(row=2, column=0, sticky="ew", padx=0, pady=20)
 
@@ -61,7 +61,12 @@ juncao_abaixo.grid(row=3, column=0, sticky="ew", padx=0, pady=20)
 seletor_moeda_destino.grid(row=0, column=0, padx=10, pady=5)
 valor_convertido.grid(row=0, column=1, padx=10, pady=5)
 
-botao_converter.grid(row=4, column=0, padx=0, pady=(25,5))
+botao_converter.grid(row=4, column=0, padx=0, pady=(20,5))
+
+# Assinatura
+
+assinatura = ctk.CTkLabel(app, text="github.com/othiagodacruz")
+assinatura.grid(row=5, column=0, sticky="ew", padx=0, pady=5)
 
 # Manter a Janela do APP Aberta
 
