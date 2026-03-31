@@ -1,6 +1,6 @@
 ## Sistema Conversor de Moedas Básico em Python com CustomTkinter
 
-import interface
+from interface import iniciar_app
 
 if __name__ == "__main__":
-    main()
+    iniciar_app()
